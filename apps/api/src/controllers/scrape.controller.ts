@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { scrapeSchema } from '../validations/scrape.schema';
-import { ScraperService } from '../services/scraper.service';
+import { ScraperService, BotProtectionError } from '../services/scraper.service';
 import { AIService } from '../services/ai.service';
 
 export class ScrapeController {
@@ -26,9 +26,30 @@ export class ScrapeController {
       // 3. Return the nicely parsed JSON array or object
       const parsedData = JSON.parse(result.text || '{}');
       res.json(parsedData);
-      
+
     } catch (err: any) {
       console.error('Scrape error:', err);
+
+      // Handle Bot Protection (PerimeterX, etc.)
+      if (err instanceof BotProtectionError) {
+        res.status(403).json({
+          error: 'Bot Protection Detected',
+          message: err.message,
+          suggestion: 'This website actively blocks automated browsers. Try scraping a different website that allows public access.',
+        });
+        return;
+      }
+
+      // Handle Gemini AI Quota Exceeded (429)
+      if (err.status === 'RESOURCE_EXHAUSTED' || err.message?.includes('quota') || err.code === 429) {
+        res.status(429).json({
+          error: 'AI Quota Exceeded',
+          message: 'The AI service is temporarily unavailable because the free-tier usage limit has been reached.',
+          suggestion: 'Please wait about 60 seconds before trying again, or try a simpler prompt.',
+        });
+        return;
+      }
+
       res.status(500).json({ error: 'Failed to extract data from URL', details: err.message });
     }
   }
