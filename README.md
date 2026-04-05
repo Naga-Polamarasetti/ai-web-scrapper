@@ -1,78 +1,55 @@
 # AI Web Scrapper 🕷️🤖
 
-An intelligent, open-source web scraping platform that leverages **Playwright** for robust browser automation and **Google Gemini** for high-fidelity data extraction. No more fragile CSS selectors or complex regex—just describe what you want in plain English.
+I built this because I was tired of writing fragile CSS selectors and maintaining complex scraping scripts every time a website changed its layout. 
 
-![AI Web Scraper Dashboard](https://raw.githubusercontent.com/Naga-Polamarasetti/ai-web-scrapper/main/apps/web/src/assets/logo.png) *(Placeholder: Update with your own screenshot)*
+This is an intelligent, simple-to-use platform that uses **Playwright** to "see" a website and **Google Gemini** to "think" about what data to extract. You just give it a URL and tell it what you want in plain English. No more selector-hunting.
 
-## ✨ Key Features
+## 🚀 Why use this?
 
-- **Natural Language Extraction**: Simply describe the data you need (e.g., "Extract all product names and their current discounts") and let the AI handle the parsing.
-- **Dynamic Content Support**: Powered by **Playwright**, it can navigate complex SPAs, single-page apps, and heavy JavaScript sites.
-- **Bot Protection Detection**: Built-in logic to detect common anti-bot measures (like PerimeterX) and provide actionable suggestions to the user.
-- **Structured JSON Output**: Guaranteed valid JSON returns, grouped into logical arrays or nested objects according to your prompt.
-- **Modern React Dashboard**: A sleek, dark-mode-inspired UI for real-time monitoring and interaction.
-- **API Documentation**: Interactive documentation served directly from the backend to help you integrate the scraper into your own workflows.
+- **It's "Selector-less"**: You don't need to find `.product-price` or `#main-content`. Just say "Extract the price" and it works.
+- **Handles the Hard Stuff**: It's pre-configured with stealth plugins to help bypass basic bot detection and clearly tells you when it's being blocked by more aggressive measures.
+- **Valid JSON, every time**: It guarantees a structured JSON response so you can plug it straight into your own app or database.
+- **Built for Developers**: Clean, modular code that’s easy to read and even easier to extend.
 
-## 🚀 Getting Started
+## 🛠️ Quick Start (3 Steps)
 
-### Prerequisites
+### 1. The Setup
+You'll need **Node.js 18+** and a **Gemini API Key** (which you can get for free from [Google AI Studio](https://aistudio.google.com/)).
 
-- **Node.js**: `v18.x` or higher
-- **Nx**: Installed globally (`npm install -g nx`) or use `npx nx`
-- **Google Gemini API Key**: Obtain a free or paid key from [Google AI Studio](https://aistudio.google.com/app/apikey).
+```bash
+git clone https://github.com/Naga-Polamarasetti/ai-web-scrapper.git
+cd ai-web-scrapper
+npm install
+```
 
-### Installation
+### 2. The Key
+Copy `.env.example` to `.env` and paste in your API key:
+```bash
+cp .env.example .env
+```
 
-1. **Clone the repository**:
-   ```bash
-   git clone https://github.com/Naga-Polamarasetti/ai-web-scrapper.git
-   cd ai-web-scrapper
-   ```
+### 3. The Run
+This is a monorepo, so you'll need two terminals to run the backend and frontend simultaneously:
 
-2. **Install dependencies**:
-   ```bash
-   npm install
-   ```
+**Terminal 1 (Backend API):**
+```bash
+npx nx serve api
+```
 
-3. **Configure Environment Variables**:
-   Copy the example environment file and add your credentials:
-   ```bash
-   cp .env.example .env
-   ```
-   Open `.env` and set your `GEMINI_API_KEY`.
+**Terminal 2 (Frontend Dashboard):**
+```bash
+npx nx serve web
+```
 
-### Running Locally
+Open [http://localhost:4200](http://localhost:4200) and start scraping!
 
-This project uses **Nx** to manage the monorepo. You need to run both the API and the Web projects.
+## 🧪 Documentation
 
-1. **Start the API (Backend)**:
-   ```bash
-   npx nx serve api
-   ```
-   The API will be available at `http://localhost:3333/api`. You can view the interactive documentation at the root of the API endpoint.
+If you want to use the API directly in your own tools, the backend serves an interactive documentation page at `http://localhost:3333/api`. No hidden secrets—everything is laid out right there.
 
-2. **Start the Web Dashboard (Frontend)**:
-   ```bash
-   npx nx serve web
-   ```
-   The dashboard will be available at `http://localhost:4200`.
+## 🤝 Let's make it better
 
-## 🛠️ Tech Stack
-
-- **Monorepo Management**: [Nx](https://nx.dev)
-- **Backend**: Node.js, Express, Playwright, Joi
-- **Frontend**: React, Tailwind CSS v4, Lucide Icons
-- **AI Engine**: Google Gemini (via `@google/generative-ai`)
-
-## 🛡️ License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request or open an issue for any bugs or feature requests.
+If you run into a website that this tool can't handle, or if you have an idea for a "Quick Prompt" that everyone should have, please open an issue or a PR. I'd love to see where this goes!
 
 ---
-
-Built with ❤️ using Gemini and Playwright.  
-[Interactive API Documentation](http://localhost:3333/api)
+Built with ❤️ for every dev who has ever spent 2 hours debugging a `.div > span` selector.
