@@ -1,96 +1,78 @@
-# TempWorkspace
+# AI Web Scrapper 🕷️🤖
 
-<a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
+An intelligent, open-source web scraping platform that leverages **Playwright** for robust browser automation and **Google Gemini** for high-fidelity data extraction. No more fragile CSS selectors or complex regex—just describe what you want in plain English.
 
-✨ Your new, shiny [Nx workspace](https://nx.dev) is ready ✨.
+![AI Web Scraper Dashboard](https://raw.githubusercontent.com/Naga-Polamarasetti/ai-web-scrapper/main/apps/web/src/assets/logo.png) *(Placeholder: Update with your own screenshot)*
 
-[Learn more about this workspace setup and its capabilities](https://nx.dev/getting-started/intro#learn-nx?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects) or run `npx nx graph` to visually explore what was created. Now, let's get you up to speed!
+## ✨ Key Features
 
-## Run tasks
+- **Natural Language Extraction**: Simply describe the data you need (e.g., "Extract all product names and their current discounts") and let the AI handle the parsing.
+- **Dynamic Content Support**: Powered by **Playwright**, it can navigate complex SPAs, single-page apps, and heavy JavaScript sites.
+- **Bot Protection Detection**: Built-in logic to detect common anti-bot measures (like PerimeterX) and provide actionable suggestions to the user.
+- **Structured JSON Output**: Guaranteed valid JSON returns, grouped into logical arrays or nested objects according to your prompt.
+- **Modern React Dashboard**: A sleek, dark-mode-inspired UI for real-time monitoring and interaction.
+- **API Documentation**: Interactive documentation served directly from the backend to help you integrate the scraper into your own workflows.
 
-To run tasks with Nx use:
+## 🚀 Getting Started
 
-```sh
-npx nx <target> <project-name>
-```
+### Prerequisites
 
-For example:
+- **Node.js**: `v18.x` or higher
+- **Nx**: Installed globally (`npm install -g nx`) or use `npx nx`
+- **Google Gemini API Key**: Obtain a free or paid key from [Google AI Studio](https://aistudio.google.com/app/apikey).
 
-```sh
-npx nx build myproject
-```
+### Installation
 
-These targets are either [inferred automatically](https://nx.dev/concepts/inferred-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or defined in the `project.json` or `package.json` files.
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/Naga-Polamarasetti/ai-web-scrapper.git
+   cd ai-web-scrapper
+   ```
 
-[More about running tasks in the docs &raquo;](https://nx.dev/features/run-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+2. **Install dependencies**:
+   ```bash
+   npm install
+   ```
 
-## Add new projects
+3. **Configure Environment Variables**:
+   Copy the example environment file and add your credentials:
+   ```bash
+   cp .env.example .env
+   ```
+   Open `.env` and set your `GEMINI_API_KEY`.
 
-While you could add new projects to your workspace manually, you might want to leverage [Nx plugins](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) and their [code generation](https://nx.dev/features/generate-code?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) feature.
+### Running Locally
 
-To install a new plugin you can use the `nx add` command. Here's an example of adding the React plugin:
-```sh
-npx nx add @nx/react
-```
+This project uses **Nx** to manage the monorepo. You need to run both the API and the Web projects.
 
-Use the plugin's generator to create new projects. For example, to create a new React app or library:
+1. **Start the API (Backend)**:
+   ```bash
+   npx nx serve api
+   ```
+   The API will be available at `http://localhost:3333/api`. You can view the interactive documentation at the root of the API endpoint.
 
-```sh
-# Generate an app
-npx nx g @nx/react:app demo
+2. **Start the Web Dashboard (Frontend)**:
+   ```bash
+   npx nx serve web
+   ```
+   The dashboard will be available at `http://localhost:4200`.
 
-# Generate a library
-npx nx g @nx/react:lib some-lib
-```
+## 🛠️ Tech Stack
 
-You can use `npx nx list` to get a list of installed plugins. Then, run `npx nx list <plugin-name>` to learn about more specific capabilities of a particular plugin. Alternatively, [install Nx Console](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) to browse plugins and generators in your IDE.
+- **Monorepo Management**: [Nx](https://nx.dev)
+- **Backend**: Node.js, Express, Playwright, Joi
+- **Frontend**: React, Tailwind CSS v4, Lucide Icons
+- **AI Engine**: Google Gemini (via `@google/generative-ai`)
 
-[Learn more about Nx plugins &raquo;](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) | [Browse the plugin registry &raquo;](https://nx.dev/plugin-registry?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+## 🛡️ License
 
-## Set up CI!
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-### Step 1
+## 🤝 Contributing
 
-To connect to Nx Cloud, run the following command:
+Contributions are welcome! Please feel free to submit a Pull Request or open an issue for any bugs or feature requests.
 
-```sh
-npx nx connect
-```
+---
 
-Connecting to Nx Cloud ensures a [fast and scalable CI](https://nx.dev/ci/intro/why-nx-cloud?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) pipeline. It includes features such as:
-
-- [Remote caching](https://nx.dev/ci/features/remote-cache?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Task distribution across multiple machines](https://nx.dev/ci/features/distribute-task-execution?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Automated e2e test splitting](https://nx.dev/ci/features/split-e2e-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Task flakiness detection and rerunning](https://nx.dev/ci/features/flaky-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-### Step 2
-
-Use the following command to configure a CI workflow for your workspace:
-
-```sh
-npx nx g ci-workflow
-```
-
-[Learn more about Nx on CI](https://nx.dev/ci/intro/ci-with-nx#ready-get-started-with-your-provider?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Install Nx Console
-
-Nx Console is an editor extension that enriches your developer experience. It lets you run tasks, generate code, and improves code autocompletion in your IDE. It is available for VSCode and IntelliJ.
-
-[Install Nx Console &raquo;](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Useful links
-
-Learn more:
-
-- [Learn more about this workspace setup](https://nx.dev/getting-started/intro#learn-nx?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects)
-- [Learn about Nx on CI](https://nx.dev/ci/intro/ci-with-nx?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Releasing Packages with Nx release](https://nx.dev/features/manage-releases?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [What are Nx plugins?](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-And join the Nx community:
-- [Discord](https://go.nx.dev/community)
-- [Follow us on X](https://twitter.com/nxdevtools) or [LinkedIn](https://www.linkedin.com/company/nrwl)
-- [Our Youtube channel](https://www.youtube.com/@nxdevtools)
-- [Our blog](https://nx.dev/blog?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+Built with ❤️ using Gemini and Playwright.  
+[Interactive API Documentation](http://localhost:3333/api)
